@@ -1,0 +1,19 @@
+﻿.result {
+    border: 1px solid black;
+    width: 100%;
+    page-break-inside: avoid;
+}
+
+.resultHeader {
+    display: flex;
+    align-items: baseline;
+}
+
+.hostNameTitle {
+    margin-left: 10px;
+    color: gray;
+}
+
+html {
+    font-family: monospace;
+}

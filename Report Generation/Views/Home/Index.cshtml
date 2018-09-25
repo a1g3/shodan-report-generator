@@ -1,1 +1,21 @@
-﻿<h1>Report Generation</h1>
+﻿@model List<Report_Generation.ViewModels.ResultViewModel>
+
+<div id="report">
+    @foreach (var result in Model)
+    {
+        <div class="result">
+            <div class="resultHeader">
+                <h1>@result.IP</h1>
+                @if (result.Hostnames.Count > 0)
+                {
+                    <span class="hostNameTitle">Hostname(s): </span>
+                    @foreach (var hostname in result.Hostnames)
+                    {
+                        <span>@hostname</span>
+                    }
+                }
+            </div>
+        </div>
+        <br />
+    }
+</div>

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Report_Generation.ViewModels;
+using Shodan;
+using System.Linq;
 
 namespace Report_Generation.Controllers
 {
@@ -6,7 +10,10 @@ namespace Report_Generation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var models = ShodanParser.GetData();
+            var viewModels = models.Select(Mapper.Map<ResultViewModel>).Take(20).ToList();
+
+            return View(viewModels);
         }
     }
 }

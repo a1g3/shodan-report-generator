@@ -5,11 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <ProjectReference Include="..\Shodan\Shodan.csproj" />
   </ItemGroup>
 
 </Project>
