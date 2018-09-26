@@ -11,7 +11,7 @@ namespace Report_Generation.Controllers
         public IActionResult Index()
         {
             var models = ShodanParser.GetData();
-            var viewModels = models.Select(Mapper.Map<ResultViewModel>).Take(20).ToList();
+            var viewModels = models.Select(Mapper.Map<ResultViewModel>).ToList();
 
             return View(viewModels);
         }

@@ -2,6 +2,7 @@
     border: 1px solid black;
     width: 100%;
     page-break-inside: avoid;
+    padding: 0 0 5px 5px;
 }
 
 .resultHeader {
@@ -12,6 +13,49 @@
 .hostNameTitle {
     margin-left: 10px;
     color: gray;
+}
+
+tr:first-child{
+    white-space: nowrap;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+%sectionTitles {
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px grey solid;
+}
+
+.sectionTitle{
+    @extend %sectionTitles;
+}
+
+.vulnerabilitiesTitle {
+    @extend %sectionTitles;
+    color: indianred;
+}
+
+td, th {
+    resize: both;
+    overflow: auto;
+}
+
+.systemInformation{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.dataTitle{
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 html {

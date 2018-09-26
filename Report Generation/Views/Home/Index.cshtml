@@ -1,21 +1,57 @@
 ﻿@model List<Report_Generation.ViewModels.ResultViewModel>
 
 <div id="report">
-    @foreach (var result in Model)
+    @foreach (var result in Model.OrderBy(x => x.IP))
     {
-        <div class="result">
-            <div class="resultHeader">
-                <h1>@result.IP</h1>
-                @if (result.Hostnames.Count > 0)
+    <div class="result">
+        <div class="resultHeader">
+            <h1>@result.IP</h1>
+            <span class="hostNameTitle">Port: </span><span>@result.Port</span>
+            @if (result.Hostnames.Count > 0)
+            {
+                <span class="hostNameTitle">Hostname(s): </span>
+                @foreach (var hostname in result.Hostnames)
                 {
-                    <span class="hostNameTitle">Hostname(s): </span>
-                    @foreach (var hostname in result.Hostnames)
-                    {
-                        <span>@hostname</span>
-                    }
+                    <span>@hostname</span>
                 }
-            </div>
+            }
         </div>
+        <div class="systemInformation">
+            @if (!string.IsNullOrEmpty(result.Information))
+            {<div><span class="dataTitle">Information</span>: @result.Information</div>}
+            @if (!string.IsNullOrEmpty(result.OperatingSystem))
+            {<div><span class="dataTitle">Operating System</span>: @result.OperatingSystem</div>}
+            @if (!string.IsNullOrEmpty(result.Product))
+            {<div><span class="dataTitle">Product</span>: @result.Product @(!string.IsNullOrEmpty(result.Version) ? $"(version {result.Version})" : "")</div>}
+        </div>
+        @if (!string.IsNullOrEmpty(result.Data))
+        {
+            <div class="sectionTitle">Raw Data</div>
+            <pre>@result.Data</pre>
+        }
+
+        @if (result.Vulnerabilities.Any())
+        {
+            <div class="vulnerbilities">
+                <div class="vulnerabilitiesTitle">Vulnerabilities</div>
+                <table>
+                    <tr>
+                        <th>CVE Number</th>
+                        <th>CVSS Score</th>
+                        <th>Description</th>
+                    </tr>
+                    @foreach (var vuln in result.Vulnerabilities.OrderBy(x => x.Value.CVSS))
+                    {
+                        <tr>
+                            <td>@vuln.Key</td>
+                            <td>@vuln.Value.CVSS</td>
+                            <td>@vuln.Value.Summary</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
         <br />
     }
 </div>
