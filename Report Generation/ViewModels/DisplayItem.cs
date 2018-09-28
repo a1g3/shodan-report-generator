@@ -12,5 +12,6 @@ namespace Report_Generation.ViewModels
     {
         public string Title { get; set; }
         public string Value { get; set; }
+        public bool IsIssue { get; set; }
     }
 }

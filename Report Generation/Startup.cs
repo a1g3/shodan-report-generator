@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Report_Generation.Mappers;
 
 namespace Report_Generation
 {
@@ -53,8 +54,7 @@ namespace Report_Generation
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            Mapper.Initialize(cfg => {
-            });
+            AutoMapperConfig.Init();
 
             app.UseMvc(routes =>
             {

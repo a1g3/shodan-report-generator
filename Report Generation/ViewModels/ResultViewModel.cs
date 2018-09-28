@@ -7,7 +7,7 @@ namespace Report_Generation.ViewModels
 {
     public class ResultViewModel
     {
-        //public List<DisplaySection> DisplayItems { get; set; }
+        public List<DisplaySection> DisplayItems { get; set; }
         public string Information { get; set; }
         public string Product { get; set; }
         public string Version { get; set; }

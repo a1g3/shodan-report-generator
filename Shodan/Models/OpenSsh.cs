@@ -27,7 +27,15 @@ namespace Shodan.Models
         public string MAC { get; set; }
         [JsonProperty("cipher")]
         public string Cipher { get; set; }
+        [JsonProperty("key")]
+        public string Key { get; set; }
 
+        [JsonProperty("kex")]
+        public Kex Kex { get; set; }
+    }
+
+    public class Kex
+    {
         [JsonProperty("languages")]
         public List<string> Langauges { get; set; }
         [JsonProperty("server_host_key_algorithms")]

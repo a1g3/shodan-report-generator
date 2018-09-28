@@ -24,13 +24,8 @@
             @if (!string.IsNullOrEmpty(result.Product))
             {<div><span class="dataTitle">Product</span>: @result.Product @(!string.IsNullOrEmpty(result.Version) ? $"(version {result.Version})" : "")</div>}
         </div>
-        @if (!string.IsNullOrEmpty(result.Data))
-        {
-            <div class="sectionTitle">Raw Data</div>
-            <pre>@result.Data</pre>
-        }
 
-        @if (result.Vulnerabilities.Any())
+        @if (result.Vulnerabilities != null && result.Vulnerabilities.Any())
         {
             <div class="vulnerbilities">
                 <div class="vulnerabilitiesTitle">Vulnerabilities</div>
@@ -42,7 +37,7 @@
                     </tr>
                     @foreach (var vuln in result.Vulnerabilities.OrderBy(x => x.Value.CVSS))
                     {
-                        <tr>
+                        <tr @(vuln.Value.Verified ? "class=red" : "" )>
                             <td>@vuln.Key</td>
                             <td>@vuln.Value.CVSS</td>
                             <td>@vuln.Value.Summary</td>
@@ -51,7 +46,26 @@
                 </table>
             </div>
         }
+        @if (result.DisplayItems != null)
+        {
+            @foreach (var displaySection in result.DisplayItems)
+            {
+                <div>
+                    <div class="sectionTitle" style="width:100%">@displaySection.Title</div>
+                    <table>
+
+                        @foreach (var displayItem in displaySection.DisplayItems)
+                        {
+                            <tr>
+                                <td>@displayItem.Title</td>
+                                <td>@displayItem.Value</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+        }
     </div>
-        <br />
+    <br />
     }
 </div>
